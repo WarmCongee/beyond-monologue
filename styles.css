@@ -1,0 +1,887 @@
+/* ============================================
+   Theme Variables
+   ============================================ */
+:root {
+  --bg: #0a0a0f;
+  --bg-alt: #12121c;
+  --surface: #111118;
+  --surface-hover: #16161f;
+  --sidebar-bg: #0d0d14;
+  --border: #1a1a25;
+  --text: #e0e0e8;
+  --text-secondary: #888;
+  --accent: #6366f1;
+  --accent-light: #8b5cf6;
+  --radius: 12px;
+  --sidebar-width: 240px;
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Floating Sidebar Navigation
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: auto;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  padding: 16px 8px;
+  backdrop-filter: blur(12px);
+  background: rgba(13, 13, 20, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 0 8px 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.sidebar-logo {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  color: var(--text);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.nav-item.active {
+  color: var(--accent);
+  background: rgba(99, 102, 241, 0.12);
+  border-left-color: var(--accent);
+}
+
+.nav-number {
+  font-size: 10px;
+  font-weight: 600;
+  min-width: 14px;
+  text-align: center;
+}
+
+/* ============================================
+   Mobile Sidebar Toggle
+   ============================================ */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+  margin-left: 0;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.main-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+  text-align: center;
+  padding: 60px 0 80px;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.hero-bg-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+}
+
+.hero-bg-video {
+  flex: 1 1 50%;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  z-index: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  z-index: 2;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.10) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero > *:not(.hero-bg-wrap) {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+
+.hero-title-highlight {
+  font-size: 38px;
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-authors {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.authors-list {
+  font-size: 17px;
+  color: #e7e7ef;
+  line-height: 1.9;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+
+.authors-list .author {
+  white-space: nowrap;
+  margin: 0 2px;
+}
+
+.authors-list sup,
+.authors-affiliations sup,
+.authors-notes sup {
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 0.72em;
+}
+
+.authors-affiliations {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 6px;
+  line-height: 1.6;
+}
+
+.authors-notes {
+  font-size: 13px;
+  color: #7a7a86;
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+
+.authors-notes a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.authors-notes a:hover {
+  color: #c084fc;
+}
+
+.hero-abstract {
+  max-width: 860px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  text-align: left;
+}
+
+.hero-abstract-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* ============================================
+   Section Headings
+   ============================================ */
+.section {
+  padding: 60px 0;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:nth-child(even)::before {
+  background: var(--bg-alt);
+}
+
+.section:last-child::before {
+  border-bottom: none;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-emoji {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subsection-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 24px 0 16px;
+}
+
+/* ============================================
+   Video Grid
+   ============================================ */
+.video-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.video-grid.portrait {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.video-grid.landscape-2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Section 2.2 — portrait videos in a flex row with 5 per line. Flexbox
+   (not grid) is used so the orphan videos in the last line stay centered. */
+.styles-portrait-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.styles-portrait-row .video-card {
+  flex: 0 0 calc((100% - 56px) / 5);
+  max-width: calc((100% - 56px) / 5);
+}
+
+/* Section 2.2 — near-square + landscape videos share one row at the same
+   height. Each card's flex-grow equals its width/height ratio (set inline
+   via --ratio), and aspect-ratio is set to the same number. Given width ∝
+   ratio and width/height = ratio, every card ends up with identical height
+   no matter how wide the container is, so no media-query tuning is needed. */
+.styles-wide-row {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.styles-wide-row .video-card {
+  flex: var(--ratio) 1 0;
+  min-width: 0;
+  aspect-ratio: var(--ratio);
+}
+
+.styles-wide-row .video-card video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ============================================
+   Video Card
+   ============================================ */
+.video-card {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.video-card video {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.video-card .play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.video-card:hover .play-overlay,
+.video-card .play-overlay.visible {
+  opacity: 1;
+}
+
+.play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.play-btn::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 14px solid #fff;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  margin-left: 3px;
+}
+
+.video-card.playing .play-btn::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  border-top: none;
+  border-bottom: none;
+  width: 14px;
+  height: 16px;
+  margin-left: 0;
+}
+
+.video-caption {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   Featured Video (full-width)
+   ============================================ */
+.video-featured {
+  margin-bottom: 20px;
+}
+
+.video-featured .video-card {
+  max-width: 100%;
+}
+
+/* ============================================
+   Single Large Video (Section 3)
+   ============================================ */
+.video-single {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Two long-form videos displayed side-by-side (Section 3) */
+.longform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.duration-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   Placeholder Section (Sections 4 & 6)
+   ============================================ */
+.placeholder-box {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 60px 40px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ============================================
+   Comparison Row (Section 5)
+   ============================================ */
+.comparison-group {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.comparison-group-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.sync-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.4);
+}
+
+.sync-play-btn:hover {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.6);
+  transform: translateY(-1px);
+}
+
+.comparison-row {
+  display: grid;
+  gap: 12px;
+}
+
+.comparison-row.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.comparison-row.cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Fluid comparison row — all cards in one row at equal video height, with
+   widths proportional to each clip's native aspect ratio. Works because
+   flex-grow ∝ ratio and aspect-ratio is the same ratio, so video height is
+   constant across cards (= row_width / Σratio). Used by Section 4. */
+.comparison-row.fluid {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.comparison-row.fluid .comparison-card {
+  flex: var(--ratio) 1 0;
+  min-width: 0;
+}
+
+.comparison-row.fluid .comparison-card video {
+  aspect-ratio: var(--ratio);
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.comparison-card {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.comparison-card video {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.model-label {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.model-label.ours {
+  color: var(--accent);
+}
+
+/* Highlight the Ours comparison card so visitors can spot our method instantly. */
+.comparison-card.ours {
+  border: 1px solid rgba(129, 140, 248, 0.55);
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.35), 0 8px 28px rgba(99, 102, 241, 0.18);
+}
+
+.comparison-card.ours .model-label.ours {
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.12));
+  border-top-color: rgba(129, 140, 248, 0.4);
+}
+
+/* Duration badge sits above the model label so they don't overlap. */
+.comparison-card .duration-badge {
+  bottom: 44px;
+}
+
+/* ============================================
+   Dataset Pairs (Section 7)
+   ============================================ */
+.dataset-intro {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.pair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.pair-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.pair-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pair-id {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.pair-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+}
+
+.pair-play-btn:hover {
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.6);
+  transform: translateY(-1px);
+}
+
+.pair-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.pair-videos .pair-video-wrap {
+  background: var(--bg);
+  position: relative;
+}
+
+.pair-videos video {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.pair-person-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+  .sidebar {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+  }
+
+  .sidebar.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .main-inner {
+    padding: 40px 24px;
+  }
+
+  .video-grid.portrait {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .styles-portrait-row .video-card {
+    flex: 0 0 calc((100% - 42px) / 4);
+    max-width: calc((100% - 42px) / 4);
+  }
+
+  .comparison-row.cols-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .authors-list {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .authors-affiliations {
+    font-size: 12px;
+  }
+
+  .authors-notes {
+    font-size: 11px;
+  }
+
+  .main-inner {
+    padding: 24px 16px;
+  }
+
+  .video-grid.portrait {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .styles-portrait-row .video-card {
+    flex: 0 0 calc((100% - 14px) / 2);
+    max-width: calc((100% - 14px) / 2);
+  }
+
+  /* On narrow screens, wrap the wide row so near-square and landscape pairs
+     stack as two rows — row heights still differ, but that's fine once we're
+     below a phablet width where fitting 4 clips across is impractical. */
+  .styles-wide-row {
+    flex-wrap: wrap;
+  }
+
+  .styles-wide-row .video-card {
+    flex: 1 1 calc(50% - 7px);
+    max-width: calc(50% - 7px);
+  }
+
+  .longform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-grid.landscape-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-row.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .comparison-row.cols-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* On narrow screens the fluid row wraps to 2 per line — equal-height
+     property is lost, but six clips would be unreadable across a phone. */
+  .comparison-row.fluid {
+    flex-wrap: wrap;
+  }
+
+  .comparison-row.fluid .comparison-card {
+    flex: 1 1 calc(50% - 6px);
+    max-width: calc(50% - 6px);
+  }
+
+  .pair-grid {
+    grid-template-columns: 1fr;
+  }
+}

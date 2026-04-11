@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond Monologue — Interactive Talking-Listening Avatar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Mobile sidebar toggle -->
+<button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">Beyond Monologue</div>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item active" data-section="hero">
+      <span class="nav-number">○</span> Overview
+    </a>
+    <a class="nav-item" data-section="section-1">
+      <span class="nav-number">1</span> Talking Portrait
+    </a>
+    <a class="nav-item" data-section="section-2">
+      <span class="nav-number">2</span> Interactive
+    </a>
+    <a class="nav-item" data-section="section-3">
+      <span class="nav-number">3</span> Long-Form
+    </a>
+    <a class="nav-item" data-section="section-4">
+      <span class="nav-number">4</span> Comparison I
+    </a>
+    <a class="nav-item" data-section="section-5">
+      <span class="nav-number">5</span> Comparison II
+    </a>
+    <a class="nav-item" data-section="section-6">
+      <span class="nav-number">6</span> Attention Design
+    </a>
+    <a class="nav-item" data-section="section-7">
+      <span class="nav-number">7</span> Dataset
+    </a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+  <div class="main-inner">
+
+    <!-- ==================== Hero ==================== -->
+    <div class="hero" id="hero">
+      <div class="hero-bg-wrap">
+        <video class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/hero/v007_bg.mp4" type="video/mp4">
+        </video>
+        <video class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/hero/v079_bg.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h1 class="hero-title"><span class="hero-title-highlight">Beyond Monologue:</span> Interactive Talking-Listening Avatar Generation with Conversational Audio Context-Aware Kernels</h1>
+      <div class="hero-authors">
+        <p class="authors-list">
+          <span class="author">Yuzhe Weng<sup>1,*</sup></span>,
+          <span class="author">Haotian Wang<sup>1,*</sup></span>,
+          <span class="author">Xinyi Yu<sup>1</sup></span>,
+          <span class="author">Xiaoyan Wu<sup>2</sup></span>,
+          <span class="author">Haoran Xu<sup>2</sup></span>,
+          <span class="author">Shan He<sup>2</sup></span>,
+          <span class="author">Jun Du<sup>1,&dagger;</sup></span>
+        </p>
+        <p class="authors-affiliations">
+          <sup>1</sup>&nbsp;University of Science and Technology of China&nbsp;&nbsp;&middot;&nbsp;&nbsp;<sup>2</sup>&nbsp;iFLYTEK
+        </p>
+        <p class="authors-notes">
+          <sup>*</sup>&nbsp;Equal contribution&nbsp;&nbsp;&middot;&nbsp;&nbsp;<sup>&dagger;</sup>&nbsp;Corresponding author
+        </p>
+      </div>
+      <div class="hero-abstract">
+        <div class="hero-abstract-label">Abstract</div>
+        <p>Audio-driven human video generation has achieved remarkable success in monologue scenarios, largely driven by advancements in powerful video generation foundation models. Moving beyond monologues, authentic human communication is inherently a full-duplex interactive process, requiring virtual agents not only to articulate their own speech but also to react naturally to incoming conversational audio. Most existing methods simply extend conventional audio-driven paradigms to listening scenarios. However, relying on strict frame-to-frame alignment renders the model's response to long-range conversational dynamics rigid, whereas directly introducing global attention catastrophically degrades lip synchronization. Recognizing the unique temporal Scale Discrepancy between talking and listening behaviors, we introduce a multi-head Gaussian kernel to explicitly inject this physical intuition into the model as a progressive temporal inductive bias. Building upon this, we construct a full-duplex interactive virtual agent capable of simultaneously processing dual-stream audio inputs for both talking and listening. Furthermore, we introduce a rigorously cleaned Talking-Listening dataset VoxHear featuring perfectly decoupled speech and background audio tracks. Extensive experiments demonstrate that our approach successfully fuses strong temporal alignment with deep contextual semantics, setting a new state-of-the-art for generating highly natural and responsive full-duplex interactive digital humans.</p>
+      </div>
+    </div>
+
+    <!-- ==================== Section 1: Talking Portrait ==================== -->
+    <div class="section" id="section-1">
+      <div class="section-heading">
+        <span class="section-number">1</span>
+        <span class="section-emoji">🗣️</span>
+        <h2 class="section-title">Talking Portrait Video Generation</h2>
+      </div>
+
+      <h3 class="subsection-title">1.1 Various Styles</h3>
+      <div class="video-grid portrait">
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v040.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v040.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">3D · Standing Pose</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v074.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v074.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Non-Human · Adult · 3D</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v032.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v032.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Non-Human · Adult · 3D</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v010.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v010.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Non-Human · Teen · 3D</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v063.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.2_VariousStyles/v063.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Non-Human · Young · 3D</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">1.2 Normal</h3>
+      <div class="video-grid portrait">
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v096.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v096.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Female · Adult · 3D</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v015.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v015.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Female · Adult · Photo</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v005.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v005.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Female · Young · Photo</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v077.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v077.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Male · Adult · CG</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v047.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v047.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Male · Elder · 3D</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v070.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v070.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Male · Elder · Illustration</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v036.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v036.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Male · Elder · Photo</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v017.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v017.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">Male · Young · Photo</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v066.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v066.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">AI-Generated · Realistic</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/1_TalkingPortraitVideoGeneration/1.1_Norm/v088.jpg">
+            <source src="assets/1_TalkingPortraitVideoGeneration/1.1_Norm/v088.mp4" type="video/mp4">
+          </video>
+          <div class="play-overlay"><div class="play-btn"></div></div>
+          <div class="video-caption">AI-Generated · Professional</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 2: Talking-Listening Interactive ==================== -->
+    <div class="section" id="section-2">
+      <div class="section-heading">
+        <span class="section-number">2</span>
+        <span class="section-emoji">💬</span>
+        <h2 class="section-title">Talking-Listening Interactive Video Generation</h2>
+      </div>
+
+      <h3 class="subsection-title">2.1 Interactive Pairs</h3>
+      <div class="pair-grid">
+        <!-- Pair 1 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 1 · YouTuber Style</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v007.jpg">
+                <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v007.mp4" type="video/mp4">
+              </video>
+              <div class="pair-person-label">Left · Female</div>
+            </div>
+            <div class="pair-video-wrap">
+              <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v079.jpg">
+                <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v079.mp4" type="video/mp4">
+              </video>
+              <div class="pair-person-label">Right · Male</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 2 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 2 · Cartoon Style</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v081.jpg">
+                <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v081.mp4" type="video/mp4">
+              </video>
+              <div class="pair-person-label">Left · Female</div>
+            </div>
+            <div class="pair-video-wrap">
+              <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v050.jpg">
+                <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.1_pair/v050.mp4" type="video/mp4">
+              </video>
+              <div class="pair-person-label">Right · Male</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="subsection-title">2.2 Various Styles</h3>
+      <!-- True portrait videos (2:3 aspect) grouped together, 5 per row; the
+           orphan row is centered. The near-square M_adult_photo_b clip is
+           promoted to the wide row below since its real resolution is 768x806. -->
+      <div class="styles-portrait-row">
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v008.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v008.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v014.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v014.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v080.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v080.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v035.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v035.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v034.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v034.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v069.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v069.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v060.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v060.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v051.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v051.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- Near-square + landscape videos share one row at identical height.
+           --ratio is the video's width/height so every card grows proportionally. -->
+      <div class="styles-wide-row">
+        <div class="video-card" style="--ratio: 1">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v071.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v071.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card" style="--ratio: 0.9528">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v049.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v049.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card" style="--ratio: 1.5">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v075.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v075.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card" style="--ratio: 1.5">
+          <video preload="none" muted poster="assets/posters/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v013.jpg">
+            <source src="assets/2_Talking-ListeningInteractiveVideoGeneration/2.2_VariousStyles/v013.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 3: Long-Form ==================== -->
+    <div class="section" id="section-3">
+      <div class="section-heading">
+        <span class="section-number">3</span>
+        <span class="section-emoji">🎬</span>
+        <h2 class="section-title">Long-Form Video Generation</h2>
+      </div>
+      <p class="section-description">Demonstrating the stability and temporal consistency of our model over extended generation durations.</p>
+      <div class="longform-grid">
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/3_Long-FormVideoGeneration/v057.jpg">
+            <source src="assets/3_Long-FormVideoGeneration/v057.mp4" type="video/mp4">
+          </video>
+          <div class="duration-badge" id="duration-badge-3">--:--</div>
+        </div>
+        <div class="video-card">
+          <video preload="none" muted poster="assets/posters/3_Long-FormVideoGeneration/v085.jpg">
+            <source src="assets/3_Long-FormVideoGeneration/v085.mp4" type="video/mp4">
+          </video>
+          <div class="duration-badge" id="duration-badge-3b">--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 4: Comparison I ==================== -->
+    <div class="section" id="section-4">
+      <div class="section-heading">
+        <span class="section-number">4</span>
+        <span class="section-emoji">⚖️</span>
+        <h2 class="section-title">Comparison on Talking Portrait Video Generation</h2>
+      </div>
+
+      <p class="section-description">Each sample is generated by six models from the identical input. Videos are ordered by native aspect ratio — the most portrait baseline sits leftmost, the most square-shaped baseline next to it, and <strong>Ours</strong> is always placed at the rightmost position (highlighted). All videos share the same height so shapes stay directly comparable. Click <em>Play All</em> to start the whole group in sync; only Ours carries audio.</p>
+
+      <!-- Sample 1 — ordered by ratio asc, Ours forced last.
+           OmniAvatar 400x720 (0.5556) | TalkVerse 768x1152 (0.6667) |
+           Echomimic v3 624x928 (0.6724) | Hallo3 480x480 (1.0) |
+           StableAvatar 512x512 (1.0) | Ours 768x1152 (0.6667) -->
+      <div class="comparison-group">
+        <div class="comparison-group-label">Sample 1</div>
+        <button class="sync-play-btn" data-group="cmp1-sample-1">▶ Play All</button>
+        <div class="comparison-row fluid" data-sync-group="cmp1-sample-1">
+          <div class="comparison-card" style="--ratio: 0.5556">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/OmniAvatar/v094.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/OmniAvatar/v094.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">OmniAvatar</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 0.6667">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/TalkVerse/v059.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/TalkVerse/v059.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">TalkVerse</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 0.6724">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Echomimic_v3/v065.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Echomimic_v3/v065.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">Echomimic v3</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 1">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Hallo3/v064.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Hallo3/v064.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">Hallo3</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 1">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/StableAvatar/v004.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/StableAvatar/v004.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">StableAvatar</div>
+          </div>
+          <div class="comparison-card ours" style="--ratio: 0.6667">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Ours/v037.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Ours/v037.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label ours">Ours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sample 2 — ordered by ratio asc, Ours forced last.
+           Echomimic v3 656x880 (0.7455) | TalkVerse 832x1088 (0.7647) |
+           Hallo3 480x480 (1.0) | OmniAvatar 720x720 (1.0) |
+           StableAvatar 512x512 (1.0) | Ours 800x1088 (0.7353) -->
+      <div class="comparison-group">
+        <div class="comparison-group-label">Sample 2</div>
+        <button class="sync-play-btn" data-group="cmp1-sample-2">▶ Play All</button>
+        <div class="comparison-row fluid" data-sync-group="cmp1-sample-2">
+          <div class="comparison-card" style="--ratio: 0.7455">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Echomimic_v3/v082.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Echomimic_v3/v082.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">Echomimic v3</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 0.7647">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/TalkVerse/v043.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/TalkVerse/v043.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">TalkVerse</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 1">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Hallo3/v087.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Hallo3/v087.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">Hallo3</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 1">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/OmniAvatar/v041.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/OmniAvatar/v041.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">OmniAvatar</div>
+          </div>
+          <div class="comparison-card" style="--ratio: 1">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/StableAvatar/v090.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/StableAvatar/v090.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label">StableAvatar</div>
+          </div>
+          <div class="comparison-card ours" style="--ratio: 0.7353">
+            <video preload="none" muted poster="assets/posters/4_ComparisononTalkingPortraitVideoGeneration/Ours/v009.jpg">
+              <source src="assets/4_ComparisononTalkingPortraitVideoGeneration/Ours/v009.mp4" type="video/mp4">
+            </video>
+            <div class="duration-badge">--:--</div>
+            <div class="model-label ours">Ours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 5: Comparison II ==================== -->
+    <div class="section" id="section-5">
+      <div class="section-heading">
+        <span class="section-number">5</span>
+        <span class="section-emoji">📊</span>
+        <h2 class="section-title">Comparison on Talking-Listening Interactive Video Generation</h2>
+      </div>
+
+      <!-- cmp-1 group -->
+      <div class="comparison-group">
+        <div class="comparison-group-label">Sample: cmp-1</div>
+        <button class="sync-play-btn" data-group="cmp-1">▶ Play All</button>
+        <div class="comparison-row cols-3" data-sync-group="cmp-1">
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v095.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v095.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">StreamAvatar</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v046.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v046.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">INFP</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v089.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v089.mp4" type="video/mp4">
+            </video>
+            <div class="model-label ours">Ours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- listen-2 group -->
+      <div class="comparison-group">
+        <div class="comparison-group-label">Sample: listen-2</div>
+        <button class="sync-play-btn" data-group="listen-2">▶ Play All</button>
+        <div class="comparison-row cols-6" data-sync-group="listen-2">
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v011.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v011.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">Speaker</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v056.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v056.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">L2L</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v020.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v020.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">DIM</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v048.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v048.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">RLHG</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v072.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v072.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">INFP</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v002.jpg">
+              <source src="assets/5_ComparisononTalking-ListeningInteractiveVideoGeneration/v002.mp4" type="video/mp4">
+            </video>
+            <div class="model-label ours">Ours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 6: Attention Design ==================== -->
+    <div class="section" id="section-6">
+      <div class="section-heading">
+        <span class="section-number">6</span>
+        <span class="section-emoji">🔬</span>
+        <h2 class="section-title">Comparison of Audio-Visual Cross-Attention Designs</h2>
+      </div>
+      <p class="section-description">Qualitative comparison of different audio–visual cross-attention designs. Our design (leftmost) uses 3D Cross-Attention with 1D RoPE and Multi-Head Gated Kernels (MHGK).</p>
+
+      <div class="comparison-group">
+        <button class="sync-play-btn" data-group="attn-cmp">▶ Play All</button>
+        <div class="comparison-row cols-3" data-sync-group="attn-cmp">
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/6_ComparisonofAudio-VisualCross-AttentionDesigns/v001.jpg">
+              <source src="assets/6_ComparisonofAudio-VisualCross-AttentionDesigns/v001.mp4" type="video/mp4">
+            </video>
+            <div class="model-label ours">Ours · 3D CrossAttn + 1D RoPE + MHGK</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/6_ComparisonofAudio-VisualCross-AttentionDesigns/v042.jpg">
+              <source src="assets/6_ComparisonofAudio-VisualCross-AttentionDesigns/v042.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">2D Cross-Attention</div>
+          </div>
+          <div class="comparison-card">
+            <video preload="none" muted poster="assets/posters/6_ComparisonofAudio-VisualCross-AttentionDesigns/v086.jpg">
+              <source src="assets/6_ComparisonofAudio-VisualCross-AttentionDesigns/v086.mp4" type="video/mp4">
+            </video>
+            <div class="model-label">MHGK w/ CFG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Section 7: Dataset ==================== -->
+    <div class="section" id="section-7">
+      <div class="section-heading">
+        <span class="section-number">7</span>
+        <span class="section-emoji">📦</span>
+        <h2 class="section-title">Dataset</h2>
+      </div>
+      <p class="dataset-intro">Our collected conversational dataset contains paired dialogue videos. Each pair captures two participants in a conversation, enabling training and evaluation of interactive talking-listening avatar generation. Below are 10 sample pairs.</p>
+
+      <div class="pair-grid">
+        <!-- Pair 1 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 1 · S0061</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0061_I00000126/v019.jpg">
+                <source src="assets/7_Dataset/V00_S0061_I00000126/v019.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0061_I00000126/v091.jpg">
+                <source src="assets/7_Dataset/V00_S0061_I00000126/v091.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 2 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 2 · S0086</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0086_I00000581/v038.jpg">
+                <source src="assets/7_Dataset/V00_S0086_I00000581/v038.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0086_I00000581/v098.jpg">
+                <source src="assets/7_Dataset/V00_S0086_I00000581/v098.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 3 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 3 · S0091</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0091_I00000537/v045.jpg">
+                <source src="assets/7_Dataset/V00_S0091_I00000537/v045.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0091_I00000537/v083.jpg">
+                <source src="assets/7_Dataset/V00_S0091_I00000537/v083.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 4 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 4 · S0102</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0102_I00000578/v021.jpg">
+                <source src="assets/7_Dataset/V00_S0102_I00000578/v021.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0102_I00000578/v068.jpg">
+                <source src="assets/7_Dataset/V00_S0102_I00000578/v068.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 5 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 5 · S0262</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0262_I00000377/v039.jpg">
+                <source src="assets/7_Dataset/V00_S0262_I00000377/v039.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0262_I00000377/v084.jpg">
+                <source src="assets/7_Dataset/V00_S0262_I00000377/v084.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 6 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 6 · S0269</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0269_I00000484/v028.jpg">
+                <source src="assets/7_Dataset/V00_S0269_I00000484/v028.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0269_I00000484/v006.jpg">
+                <source src="assets/7_Dataset/V00_S0269_I00000484/v006.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 7 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 7 · S0298</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0298_I00000580/v076.jpg">
+                <source src="assets/7_Dataset/V00_S0298_I00000580/v076.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0298_I00000580/v024.jpg">
+                <source src="assets/7_Dataset/V00_S0298_I00000580/v024.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 8 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 8 · S0336</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0336_I00000132/v053.jpg">
+                <source src="assets/7_Dataset/V00_S0336_I00000132/v053.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0336_I00000132/v018.jpg">
+                <source src="assets/7_Dataset/V00_S0336_I00000132/v018.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 9 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 9 · S0442</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0442_I00000579/v025.jpg">
+                <source src="assets/7_Dataset/V00_S0442_I00000579/v025.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0442_I00000579/v062.jpg">
+                <source src="assets/7_Dataset/V00_S0442_I00000579/v062.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 10 -->
+        <div class="pair-card">
+          <div class="pair-header">
+            <span class="pair-id">Pair 10 · S0491</span>
+            <button class="pair-play-btn">▶ Play Pair</button>
+          </div>
+          <div class="pair-videos">
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person A</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0491_I00000307/v003.jpg">
+                <source src="assets/7_Dataset/V00_S0491_I00000307/v003.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="pair-video-wrap">
+              <span class="pair-person-label">Person B</span>
+              <video preload="none" muted poster="assets/posters/7_Dataset/V00_S0491_I00000307/v029.jpg">
+                <source src="assets/7_Dataset/V00_S0491_I00000307/v029.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>

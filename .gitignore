@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Claude Code / Superpowers 本地配置
+.claude/
+.superpowers/
+docs/
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志 & 临时文件
+*.log
+*.tmp
+
+CLAUDE.md
