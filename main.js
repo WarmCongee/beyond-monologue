@@ -299,4 +299,21 @@
     else video.addEventListener('loadedmetadata', setDuration);
   });
 
+  // BibTeX copy
+  const bibCopyBtn = document.querySelector('.bibtex-copy');
+  if (bibCopyBtn) {
+    bibCopyBtn.addEventListener('click', () => {
+      const code = document.querySelector('.bibtex-block code');
+      if (!code) return;
+      navigator.clipboard.writeText(code.innerText).then(() => {
+        bibCopyBtn.textContent = 'Copied!';
+        bibCopyBtn.classList.add('copied');
+        setTimeout(() => {
+          bibCopyBtn.textContent = 'Copy';
+          bibCopyBtn.classList.remove('copied');
+        }, 1800);
+      });
+    });
+  }
+
 })();

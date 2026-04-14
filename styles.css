@@ -287,6 +287,89 @@ body {
   color: #c084fc;
 }
 
+.hero-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 6px 0 30px;
+  flex-wrap: wrap;
+}
+
+.hero-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary, #e8e8ea);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.hero-link-btn:hover {
+  background: rgba(192, 132, 252, 0.15);
+  border-color: rgba(192, 132, 252, 0.5);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.hero-link-btn svg {
+  flex-shrink: 0;
+}
+
+.bibtex-wrap {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bibtex-block {
+  background: rgba(12, 12, 16, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 22px 26px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary, #c9c9d0);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+.bibtex-copy {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary, #c9c9d0);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bibtex-copy:hover {
+  background: rgba(192, 132, 252, 0.2);
+  color: #fff;
+  border-color: rgba(192, 132, 252, 0.5);
+}
+
+.bibtex-copy.copied {
+  background: rgba(74, 222, 128, 0.2);
+  color: #86efac;
+  border-color: rgba(74, 222, 128, 0.5);
+}
+
 .hero-abstract {
   max-width: 860px;
   margin: 0 auto;

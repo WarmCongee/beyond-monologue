@@ -79,6 +79,16 @@
           <sup>*</sup>&nbsp;Equal contribution&nbsp;&nbsp;&middot;&nbsp;&nbsp;<sup>&dagger;</sup>&nbsp;Corresponding author
         </p>
       </div>
+      <div class="hero-links">
+        <a class="hero-link-btn" href="https://arxiv.org/abs/2604.10367" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Paper</span>
+        </a>
+        <a class="hero-link-btn" href="#bibtex">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span>BibTeX</span>
+        </a>
+      </div>
       <div class="hero-abstract">
         <div class="hero-abstract-label">Abstract</div>
         <p>Audio-driven human video generation has achieved remarkable success in monologue scenarios, largely driven by advancements in powerful video generation foundation models. Moving beyond monologues, authentic human communication is inherently a full-duplex interactive process, requiring virtual agents not only to articulate their own speech but also to react naturally to incoming conversational audio. Most existing methods simply extend conventional audio-driven paradigms to listening scenarios. However, relying on strict frame-to-frame alignment renders the model's response to long-range conversational dynamics rigid, whereas directly introducing global attention catastrophically degrades lip synchronization. Recognizing the unique temporal Scale Discrepancy between talking and listening behaviors, we introduce a multi-head Gaussian kernel to explicitly inject this physical intuition into the model as a progressive temporal inductive bias. Building upon this, we construct a full-duplex interactive virtual agent capable of simultaneously processing dual-stream audio inputs for both talking and listening. Furthermore, we introduce a rigorously cleaned Talking-Listening dataset VoxHear featuring perfectly decoupled speech and background audio tracks. Extensive experiments demonstrate that our approach successfully fuses strong temporal alignment with deep contextual semantics, setting a new state-of-the-art for generating highly natural and responsive full-duplex interactive digital humans.</p>
@@ -820,6 +830,26 @@
           </div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- ==================== BibTeX ==================== -->
+    <div class="section" id="bibtex">
+      <div class="section-heading">
+        <span class="section-emoji">📑</span>
+        <h2 class="section-title">BibTeX</h2>
+      </div>
+      <div class="bibtex-wrap">
+        <button class="bibtex-copy" type="button" aria-label="Copy BibTeX">Copy</button>
+        <pre class="bibtex-block"><code>@misc{weng2026monologueinteractivetalkinglisteningavatar,
+      title={Beyond Monologue: Interactive Talking-Listening Avatar Generation with Conversational Audio Context-Aware Kernels},
+      author={Yuzhe Weng and Haotian Wang and Xinyi Yu and Xiaoyan Wu and Haoran Xu and Shan He and Jun Du},
+      year={2026},
+      eprint={2604.10367},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2604.10367},
+}</code></pre>
       </div>
     </div>
 
